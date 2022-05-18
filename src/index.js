@@ -1,8 +1,13 @@
 const express = require('express') // import express package
+const bodyParser = require('body-parser') // import body-parser package
 const mongoose = require('mongoose') // import mongoose package
 const route = require("./routes/route.js") // import route folder
 
 const app = express() // instatiate the express app
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
