@@ -57,7 +57,7 @@ const urlShorten = async function (req, res) {
 
         if (!longUrl) return res.status(400).send({ status: false, message: "Enter the longurl data" })
 
-        if (!isValid(longUrl)) return res.status(400).send({ status: false, message: "provide the longurl in correct format" })
+        // if (!isValid(longUrl)) return res.status(400).send({ status: false, message: "provide the longurl in correct format" })
 
         let cachedData = await GET_ASYNC(`${req.body.longUrl}`)
         if (cachedData) {
@@ -113,10 +113,12 @@ const urlShorten = async function (req, res) {
 
 const geturl = async function (req, res) {
     try {
+      
         let urlCode = req.params.urlCode
-        if (!Object.keys(urlCode).length == 0) return res.status(404).send("provide path params")
+        if (!urlCode) return res.status(400).send({ status: false, msg: "urlcode is required" })
+        
         if (!isValid(urlCode)) {
-            return res.status(400).send({ status: false, messege: "Please Use A Valid Link" })
+            // return res.status(400).send({ status: false, messege: "Please Use A Valid Link" })
         } else {
             let cachedData = await GET_ASYNC(`${req.params.urlCode}`)
             if (cachedData) {
