@@ -44,7 +44,7 @@ const isValidRequestBody = function (requestBody) {
 
 const urlShorten = async function (req, res) {
     try {
-        let baseUrl = 'http:localhost:3000'
+        let baseUrl = 'http://localhost:3000'
         let data = req.body
 
         if (!isValidRequestBody(data)) return res.status(400).send({ status: false, message: "Enter the required fields" })
