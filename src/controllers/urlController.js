@@ -67,7 +67,7 @@ const urlShorten = async function (req, res) {
 
         if (validUrl.isUri(longUrl)) {
 
-            let url = await urlModel.findOne({ longUrl: longUrl })
+            let url = await urlModel.findOne({ longUrl: longUrl }).select({_id: 0, createdAt: 0, updatedAt : 0, __v : 0})
             if (url) {
                 await SET_ASYNC(`${req.body.longUrl}`, JSON.stringify(url))
                 return res.status(200).send({ status: true, message: url })
